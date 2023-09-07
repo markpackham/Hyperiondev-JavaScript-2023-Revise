@@ -1,0 +1,107 @@
+body {
+    background-color: hsl(60, 15%, 72%);
+    color: hsl(0, 4%, 14%);
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 0.8rem;
+    padding: 5px;
+    max-width: 1200px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+/* added for demo purposes, normally I'd just not use figure or figcation */
+figcaption {
+    visibility: hidden;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    border-radius: 5px;
+}
+
+nav {
+    text-align: center;
+}
+
+ol li,
+ul li {
+    margin-bottom: 3px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+#profile {
+    /* // Used the Mozilla Developer Network's reference for box shadow */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
+    box-shadow: 10px 5px 5px hsl(0, 1%, 48%);
+    width: 70%;
+    max-width: 340px;
+    margin-left: 35%;
+}
+
+
+/* Grid layout based on "05-005 CSS Overview"  grid demo */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-item {
+    background-color: hsl(60, 45%, 78%);
+    text-align: center;
+    border: 1px solid black;
+    padding: 2vh;
+    margin: 5px;
+}
+
+
+/* Flexbox layout based on "05-005 CSS Overview"  flexbox demo */
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-item {
+    border: 1px solid black;
+    background-color: hsl(60, 45%, 78%);
+    padding: 2vh;
+    margin: 1vh;
+    flex: 1;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+/* Media query baed on CSS @media Rule
+from W3Schools
+https://www.w3schools.com/cssref/css3_pr_mediaquery.php
+*/
+@media screen and (max-width: 390px) {
+    figure {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 850px) {
+    #profile {
+        margin-left: 20%;
+    }
+}
