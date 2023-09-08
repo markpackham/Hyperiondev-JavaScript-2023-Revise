@@ -10,9 +10,11 @@ function findSum(numArray) {
 }
 
 // subtractNumbers
-function subtractNumbers(num1, num2) {
-  return num1 - num2;
-}
+// experimented with arrow function
+// if this was a real site I'd stick with one function style or the other for consistency
+// as well as whether or not I was using an old version of JS where hoisting was needed
+// or if Block Scoping was 100% vital for safety reasons
+let subtractNumbers = (num1, num2) => num1 - num2;
 
 // multiplyNumbers
 function multiplyNumbers(num1, num2) {
