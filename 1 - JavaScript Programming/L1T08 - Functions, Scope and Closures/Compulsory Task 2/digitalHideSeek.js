@@ -5,6 +5,7 @@ function hide(location) {
   // return the hidden location when called
   function seek() {
     // closure around hideLocation
+    // so seek() has access to hideLocation both locally and from the parent hide()
     return hideLocation;
   }
   return seek;
