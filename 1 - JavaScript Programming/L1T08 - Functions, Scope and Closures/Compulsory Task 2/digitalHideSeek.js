@@ -8,6 +8,8 @@ function hide(location) {
     // so seek() has access to hideLocation both locally and from the parent hide()
     return hideLocation;
   }
+  // seek() has access to the parent function hide() even after the parent function has returned
+  // this shows closure
   return seek;
 }
 
