@@ -30,15 +30,6 @@ shoesArray.push(
   dancingShoes
 );
 
-// find a shoe by it's name in an array
-// function shoeSearch(arr, name) {
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i].name === name) {
-//       return arr[i];
-//     }
-//   }
-// }
-
 // Used the Mozilla Developer Network to use find method for arrays
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // use find method instead of for loop
@@ -76,6 +67,7 @@ function showLowestToHighestValuePerItem(arr) {
   return lowestValuePerItem;
 }
 
+// allow user to edit 1 specific shoe with specific changes
 function shoeEditor(
   arr,
   name,
@@ -95,6 +87,23 @@ function shoeEditor(
   }
 }
 
+// mass edit all 4 properties off all 5 shoes so they all become the same
+function shoeEditAll(
+  arr,
+  newName,
+  newProductCode,
+  newQuantity,
+  newValuePerItem
+) {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].name = newName;
+    arr[i].productCode = newProductCode;
+    arr[i].quantity = newQuantity;
+    arr[i].valuePerItem = newValuePerItem;
+  }
+  return arr;
+}
+
 console.log("Search for 'Goal Champ' named shoes.");
 console.table(shoeSearch(shoesArray, "Goal Champ"));
 
@@ -107,7 +116,10 @@ console.table(showHighestValuePerItem(shoesArray));
 console.log("\nAll shows ordered from lowest to highest value per item");
 console.table(showLowestToHighestValuePerItem(shoesArray));
 
-console.log("\nEdited shoe instance");
+console.log("\nEdit on specific shoe instance");
 console.table(
   shoeEditor(shoesArray, "Run Fast", "Run Fast Edited", 10, 11, 12)
 );
+
+console.log("\nEdit applied to all instances");
+console.table(shoeEditAll(shoesArray, "Name Edited", 0, 0, 0, 0));
