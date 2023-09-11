@@ -12,6 +12,7 @@ const wordsArray = [
 ];
 
 // function returns only words that are 6 letters long
+// fn is our anonymous function
 let myFilterFunction = (arr) => (fn) => {
   const sixLetterWords = [];
   // callback function is applied to each item in the array
@@ -27,4 +28,10 @@ let myFilterFunction = (arr) => (fn) => {
 };
 
 const allSixLetterWords = myFilterFunction(wordsArray)((item) => item);
-console.log("Six letter words: " + allSixLetterWords);
+console.log(
+  "ALL six letter words shown using myFilterFunction: " + allSixLetterWords
+);
+
+// Check to see if output is identical to inbuilt filter function
+// const result = wordsArray.filter((word) => word.length === 6);
+// console.log("ALL six letter words shown using inbuilt filter function: " + result);
