@@ -39,11 +39,23 @@ shoesArray.push(
 //   }
 // }
 
-// // Used the Mozilla Developer Network to use find method for arrays
+// Used the Mozilla Developer Network to use find method for arrays
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // use find method instead of for loop
 function shoeSearch(arr, name) {
   return arr.find((shoe) => shoe.name === name);
 }
 
+// Used the Mozilla Developer Network to use sort method for arrays
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+function showLowestValuePerItem(arr) {
+  let = lowestValuePerItem = arr.sort(
+    (a, b) => a.valuePerItem - b.valuePerItem
+  );
+
+  return lowestValuePerItem[0];
+}
+
 console.table(shoeSearch(shoesArray, "Run Fast"));
+
+console.table(showLowestValuePerItem(shoesArray));
