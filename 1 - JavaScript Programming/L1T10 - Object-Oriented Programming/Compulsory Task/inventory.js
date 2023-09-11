@@ -87,7 +87,11 @@ function shoeEditor(
   }
 }
 
+// "A function to edit all 4 properties for each of the five shoe instances."
 // mass edit all 4 properties off all 5 shoes so they all become the same
+// I created the shoeEditor() function above since I thought it made more sense
+// to target a specific shoe by name and edit them with specific values but
+// the following function should have the effect desired in the exercise
 function shoeEditAll(
   arr,
   newName,
