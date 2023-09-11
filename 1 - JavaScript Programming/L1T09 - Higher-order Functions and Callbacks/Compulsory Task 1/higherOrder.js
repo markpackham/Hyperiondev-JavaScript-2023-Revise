@@ -12,6 +12,7 @@ const wordsArray = [
 ];
 
 // function returns only words that are 6 letters long
+// arr is our parameter for the array we want to use
 // fn is our anonymous function
 let myFilterFunction = (arr) => (fn) => {
   const sixLetterWords = [];
@@ -24,6 +25,8 @@ let myFilterFunction = (arr) => (fn) => {
     }
   }
 
+  // we only care about six letter words so an array holding only them
+  // get returned
   return sixLetterWords;
 };
 
