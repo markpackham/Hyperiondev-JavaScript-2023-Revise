@@ -31,12 +31,19 @@ shoesArray.push(
 );
 
 // find a shoe by it's name in an array
+// function shoeSearch(arr, name) {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i].name === name) {
+//       return arr[i];
+//     }
+//   }
+// }
+
+// // Used the Mozilla Developer Network to use find method for arrays
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+// use find method instead of for loop
 function shoeSearch(arr, name) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].name === name) {
-      return arr[i];
-    }
-  }
+  return arr.find((shoe) => shoe.name === name);
 }
 
 console.table(shoeSearch(shoesArray, "Run Fast"));
