@@ -14,7 +14,7 @@ function Shoes(
 }
 
 // create shoe instances
-let runningShoes = new Shoes("Run Fast", 1, 1, 1);
+let runningShoes = new Shoes("Run Fast", 1, 1, 1000);
 let tennisShoes = new Shoes("Tennis Ace", 2, 2, 2);
 let footballShoes = new Shoes("Goal Champ", 3, 3, 3);
 let rugbyShoes = new Shoes("Tackle Hard", 4, 4, 4);
@@ -67,11 +67,23 @@ function showHighestValuePerItem(arr) {
   return highestValuePerItem[0];
 }
 
-console.log("Search for 'Run Fast' named shoes.");
-console.table(shoeSearch(shoesArray, "Run Fast"));
+// identical to showLowestValuePerItem, you just return the entire array
+function showLowestToHighestValuePerItem(arr) {
+  let = lowestValuePerItem = arr.sort(
+    (a, b) => a.valuePerItem - b.valuePerItem
+  );
+
+  return lowestValuePerItem;
+}
+
+console.log("Search for 'Goal Champ' named shoes.");
+console.table(shoeSearch(shoesArray, "Goal Champ"));
 
 console.log("\nSearch for lowest value per item.");
 console.table(showLowestValuePerItem(shoesArray));
 
 console.log("\nSearch for hightest value per item.");
 console.table(showHighestValuePerItem(shoesArray));
+
+console.log("\nAll shows ordered from lowest to highest value per item");
+console.table(showLowestToHighestValuePerItem(shoesArray));
