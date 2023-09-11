@@ -1,7 +1,7 @@
 // Shoes constructor
 // added default values as a safeguard to avoid user entering null values
 function Shoes(
-  name = "unnamed",
+  name = "Generic Shoe",
   productCode = 0,
   quantity = 1,
   valuePerItem = 1
@@ -76,6 +76,25 @@ function showLowestToHighestValuePerItem(arr) {
   return lowestValuePerItem;
 }
 
+function shoeEditor(
+  arr,
+  name,
+  newName,
+  newProductCode,
+  newQuantity,
+  newValuePerItem
+) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].name === name) {
+      arr[i].name = newName;
+      arr[i].productCode = newProductCode;
+      arr[i].quantity = newQuantity;
+      arr[i].valuePerItem = newValuePerItem;
+      return arr[i];
+    }
+  }
+}
+
 console.log("Search for 'Goal Champ' named shoes.");
 console.table(shoeSearch(shoesArray, "Goal Champ"));
 
@@ -87,3 +106,8 @@ console.table(showHighestValuePerItem(shoesArray));
 
 console.log("\nAll shows ordered from lowest to highest value per item");
 console.table(showLowestToHighestValuePerItem(shoesArray));
+
+console.log("\nEdited shoe instance");
+console.table(
+  shoeEditor(shoesArray, "Run Fast", "Run Fast Edited", 10, 11, 12)
+);
