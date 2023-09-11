@@ -56,6 +56,22 @@ function showLowestValuePerItem(arr) {
   return lowestValuePerItem[0];
 }
 
+function showHighestValuePerItem(arr) {
+  let = highestValuePerItem = arr.sort(
+    // invert the logic of the lowestValuePerItem function
+    (a, b) => b.valuePerItem - a.valuePerItem
+  );
+
+  // another solution would have been to replicate lowestValuePerItem function
+  // but instead of returning the first array entry return the last using the array length - 1
+  return highestValuePerItem[0];
+}
+
+console.log("Search for 'Run Fast' named shoes.");
 console.table(shoeSearch(shoesArray, "Run Fast"));
 
+console.log("\nSearch for lowest value per item.");
 console.table(showLowestValuePerItem(shoesArray));
+
+console.log("\nSearch for hightest value per item.");
+console.table(showHighestValuePerItem(shoesArray));
