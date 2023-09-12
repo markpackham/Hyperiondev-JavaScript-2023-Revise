@@ -5,7 +5,7 @@ const getCatGif = async () => {
   // (Accessed: 12 September 2023).
   try {
     // fetch cat from api
-    let cat = await fetch(
+    let response = await fetch(
       // // Had to learn about CORS issues reading Stack Overflow
       // Stranger B.Stranger 9 et al. (1961)
       // How to use CORS anywhere to reverse proxy and add cors headers, Stack Overflow.
@@ -20,9 +20,17 @@ const getCatGif = async () => {
       "https://cors-anywhere.herokuapp.com/http://thecatapi.com/api/images/get?format=src&type=gif"
     );
 
-    // output cat url
-    console.log(cat.url);
-    // catch and show error if something went wrong
+    // check for 200 http status
+    if (response.ok) {
+      let catGif = response;
+      // output cat url
+      console.log(catGif.url);
+    } else {
+      // show error if we don't get an ok
+      console.log(`Error ${response.statusText}`);
+    }
+
+    // catch and show error if the fetch process itself fails
   } catch (error) {
     console.log(error);
   }
