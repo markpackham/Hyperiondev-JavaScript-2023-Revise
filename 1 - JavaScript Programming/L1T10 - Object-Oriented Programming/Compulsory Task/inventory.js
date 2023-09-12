@@ -1,3 +1,6 @@
+// Shoes array
+const shoesArray = [];
+
 // Shoes constructor
 // added default values as a safeguard to avoid user entering null values
 function Shoes(
@@ -11,6 +14,12 @@ function Shoes(
   this.productCode = productCode;
   this.quantity = quantity;
   this.valuePerItem = valuePerItem;
+
+  // add any shoe I create to my array list.
+  // learned from https://hyperiondev.cogrammar.com/review/b09f162be433a27438adb2fd1156fe4e5f5b4ddfc57990d377b1f8f57e1c8dc7/
+  // automatically add any new object to your array,
+  // without the need to manually push in the object name
+  shoesArray.push(this);
 }
 
 // create shoe instances
@@ -19,16 +28,6 @@ let tennisShoes = new Shoes("Tennis Ace", 2, 2, 2);
 let footballShoes = new Shoes("Goal Champ", 3, 3, 3);
 let rugbyShoes = new Shoes("Tackle Hard", 4, 4, 4);
 let dancingShoes = new Shoes("Light Footwork", 5, 5, 5);
-
-const shoesArray = [];
-// add all my shoes to the array
-shoesArray.push(
-  runningShoes,
-  tennisShoes,
-  footballShoes,
-  rugbyShoes,
-  dancingShoes
-);
 
 // Used the Mozilla Developer Network to use find method for arrays
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
