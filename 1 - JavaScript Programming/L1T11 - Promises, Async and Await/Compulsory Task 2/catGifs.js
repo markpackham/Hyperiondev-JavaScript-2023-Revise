@@ -1,4 +1,4 @@
-async function getCatGif() {
+const getCatGif = async () => {
   // try / catch block learned from
   // Pavlutin, D. (2023) How to use fetch with Async/await, Dmitri Pavlutin Blog.
   // Available at: https://dmitripavlutin.com/javascript-fetch-async-await/
@@ -26,6 +26,6 @@ async function getCatGif() {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 getCatGif();
