@@ -32,6 +32,7 @@ function addIncome() {
     document.getElementsByName("recurring").value
   );
   incomesArr.push(newIncome);
+  console.log("Hello World " + incomesArr);
 }
 
 // Income
