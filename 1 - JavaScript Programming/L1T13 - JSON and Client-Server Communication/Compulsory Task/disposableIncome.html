@@ -8,5 +8,40 @@
 </head>
 <body>
 
+
+    <form>
+        <h3>Income</h3>
+        <label for="iName">Enter Income name: </label>
+        <input type="text" name="iName" id="iName" required>
+        <label for="amount">Enter your amount: </label>
+        <input type="number" name="amount" id="amount">
+        <!-- Radio buttons learned from MDN Web Docs
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
+        -->
+        <input type="radio" id="recurring" name="recurring" value="recurring">
+        <label for="recurring">Recurring</label>
+        <input type="radio" id="not_recurring" name="recurring" value="not_recurring">
+        <label for="not_recurring">Not recurring</label>
+        <br>
+        <button onclick="addIncome()">Create new income object</button>
+    </form>
+
+    <form>
+        <h3>Expenses</h3>
+        <label for="eName">Enter Expenses name: </label>
+        <input type="text" name="eName" id="eName" required>
+        <label for="eAmount">Enter your amount: </label>
+        <input type="number" name="eAmount" id="eAmount">
+        <input type="radio" id="eRecurring" name="eRecurring" value="eRecurring">
+        <label for="eRecurring">Recurring</label>
+        <input type="radio" id="eNot_recurring" name="eRecurring" value="eNot_recurring">
+        <label for="eNot_recurring">Not recurring</label>
+        <br>
+        <button onclick="addExpense()">Create new expense object</button>
+    </form>
+
+    <div id="incomeList"></div>
+    <div id="expensesList"></div>
+
 </body>
 </html>
