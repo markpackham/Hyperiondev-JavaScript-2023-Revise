@@ -24,7 +24,9 @@ function Expenses(name, amount, recurring) {
 }
 
 // Add a new Income
-function addIncome() {
+// Prevent default page refresh behavior learned from MDN Webdocs
+// https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+function addIncome(event) {
   incomesArr = JSON.parse(sessionStorage.getItem("incomes"));
   let newIncome = new Income(
     document.getElementById("iName").value,
@@ -32,7 +34,7 @@ function addIncome() {
     document.getElementsByName("recurring").value
   );
   incomesArr.push(newIncome);
-  console.log("Hello World " + incomesArr);
+  event.preventDefault();
 }
 
 // Income
