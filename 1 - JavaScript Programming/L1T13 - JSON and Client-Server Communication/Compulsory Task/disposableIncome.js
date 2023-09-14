@@ -71,8 +71,15 @@ let electricity = new Expenses("electricity", 20, true);
 let fuel = new Expenses("fuel", 20, true);
 let wedding = new Expenses("wedding", 100, false);
 
+let incomeOutput = "";
 for (let index = 0; index < incomesArr.length; index++) {
-  console.log(
-    `${incomesArr[index].name} ${incomesArr[index].amount} ${incomesArr[index].recurring}`
-  );
+  incomeOutput +=
+    incomesArr[index].name +
+    "   £" +
+    incomesArr[index].amount +
+    "   recurring:" +
+    incomesArr[index].recurring +
+    "\n";
 }
+
+const incomePrompt = prompt(incomeOutput);
