@@ -105,9 +105,18 @@ let newExpense = new Expenses(
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
 let disposableIncome = Number(totalIncome() - totalExpenses()).toFixed(2);
 
-savingsPrompt = prompt(
-  `You disposable income is ${disposableIncome} how much would you like to put in savings?`
-);
+// loop until user enters a savings number that won't render them bankrupt
+while (true) {
+  savingsPrompt = prompt(
+    `You disposable income is ${disposableIncome} how much would you like to put in savings?`
+  );
+
+  if (Number(savingsPrompt) > disposableIncome) {
+    alert("You won't have any money left please try again.");
+  } else {
+    break;
+  }
+}
 
 alert(
   `Total disposable income after savings: £${Number(
