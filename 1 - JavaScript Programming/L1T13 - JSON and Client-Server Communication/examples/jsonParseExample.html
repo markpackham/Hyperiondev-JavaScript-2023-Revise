@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Parsing Example</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        // JSON string received from the server
+        var jsonString = '{ "name":"Jason", "age":30, "city":"New York"}';
+        // Parsing the JSON string into a JavaScript object
+        var obj = JSON.parse(jsonString);
+        // Accessing the name and age properties of the object and inserting them into the paragraph element with id "demo"
+        document.getElementById("demo").innerHTML = obj.name + ", " +
+            obj.age;
+    </script>
+</body>
+</html>
