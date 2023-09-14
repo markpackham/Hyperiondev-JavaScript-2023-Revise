@@ -4,8 +4,7 @@ const expensesArr = [];
 let incomeOutput = "";
 let expenseOutput = "";
 
-let totalIncome = 0;
-let totalExpenses = 0;
+let savings = 0;
 
 // Constructors for Income and Expenses
 function Income(name, amount, recurring) {
@@ -77,27 +76,21 @@ const displayExpenses = () => {
   }
 };
 
-// Show Total Income
-let getTotalIncome = () => {
-  for (let i = 0; i < incomesArr.length; i++) {
-    totalIncome += incomesArr[i].amount;
-  }
+// reduce method learned from MDN Web Docs
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+let totalIncome = () => {
+  return incomesArr.reduce((total, income) => total + income.amount, 0);
 };
 
-let getTotalExpenses = () => {
-  for (let i = 0; i < expensesArr.length; i++) {
-    totalExpenses += expensesArr[i].amount;
-  }
+let totalExpenses = () => {
+  return expensesArr.reduce((total, expense) => total + expense.amount, 0);
 };
-
-getTotalIncome();
-getTotalExpenses();
 
 displayIncome();
 displayExpenses();
 console.log(incomeOutput);
 console.log(expenseOutput);
 
-console.log("Total income: £" + totalIncome);
-console.log("Total expenses: £" + totalExpenses);
-console.log("Disposable income: £" + Number(totalIncome - totalExpenses));
+console.log("Total income: £" + totalIncome());
+console.log("Total expenses: £" + totalExpenses());
+console.log("Disposable income: £" + Number(totalIncome() - totalExpenses()));
