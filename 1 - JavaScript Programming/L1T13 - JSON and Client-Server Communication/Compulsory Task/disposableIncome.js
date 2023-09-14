@@ -93,7 +93,6 @@ let totalExpenses = () => {
 };
 
 displayIncome();
-displayExpenses();
 
 incomePrompt = prompt(
   incomeOutput + "\n Add new income seperated by commas eg 'tips,10,false'"
@@ -106,21 +105,28 @@ let newIncome = new Income(
   incomePromptArray[2]
 );
 
-displayIncome();
 displayExpenses();
-console.log(incomeOutput);
-console.log(expenseOutput);
+
+expensePrompt = prompt(
+  expenseOutput + "\n Add new expense seperated by commas eg 'shoes,10,true'"
+);
+const expensePromptArray = expensePrompt.split(",");
+let newExpense = new Expenses(
+  expensePromptArray[0],
+  Number(expensePromptArray[1]),
+  expensePromptArray[2]
+);
 
 // toFixed() learned from MDN Web Docs
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
 let disposableIncome = Number(totalIncome() - totalExpenses()).toFixed(2);
 
-console.log("Total income: £" + totalIncome());
-console.log("Total expenses: £" + totalExpenses());
-console.log("Disposable income: £" + disposableIncome);
+disposableIncomePrompt = prompt(
+  `You disposable income is ${disposableIncome} how much would you like to put in savings?`
+);
 
-// alert(
-//   `Total disposable income after savings: £${(
-//     disposableIncome - savings
-//   ).toFixed(2)}`
-// );
+alert(
+  `Total disposable income after savings: £${Number(
+    disposableIncome - disposableIncomePrompt
+  ).toFixed(2)}`
+);
