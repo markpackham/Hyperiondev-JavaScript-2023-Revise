@@ -1,5 +1,5 @@
-const incomesArr = [];
-const expensesArr = [];
+let incomesArr = [];
+let expensesArr = [];
 
 let incomeOutput = "";
 let expenseOutput = "";
@@ -32,7 +32,6 @@ function addIncome() {
     document.getElementsByName("recurring").value
   );
   incomesArr.push(newIncome);
-  console.log(incomesArr);
 }
 
 // Income
