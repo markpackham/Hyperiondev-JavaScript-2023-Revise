@@ -30,7 +30,8 @@ function Expenses(name, amount, recurring) {
 // Prevent default page refresh behavior learned from MDN Webdocs
 // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
 function addIncome() {
-  console.log(document.getElementById("iName").value);
+  iName = document.getElementById("iName").value;
+  console.log(iName);
   // incomesArr = JSON.parse(sessionStorage.getItem("incomes"));
   // let newIncome = new Income(
   //   document.getElementById("iName").value,
@@ -75,7 +76,7 @@ const displayExpenses = () => {
       expensesArr[i].name +
       "   £" +
       expensesArr[i].amount +
-      "   recurring:" +
+      "   recurring: " +
       expensesArr[i].recurring +
       "\n";
   }
@@ -90,6 +91,20 @@ let totalIncome = () => {
 let totalExpenses = () => {
   return expensesArr.reduce((total, expense) => total + expense.amount, 0);
 };
+
+displayIncome();
+displayExpenses();
+
+incomePrompt = prompt(
+  incomeOutput + "\n Add new income seperated by commas eg 'tips,10,false'"
+);
+const incomePromptArray = incomePrompt.split(",");
+// add new object to incomes array
+let newIncome = new Income(
+  incomePromptArray[0],
+  Number(incomePromptArray[1]),
+  incomePromptArray[2]
+);
 
 displayIncome();
 displayExpenses();
