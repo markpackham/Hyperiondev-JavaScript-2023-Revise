@@ -2,6 +2,7 @@ const incomesArr = [];
 const expensesArr = [];
 
 let incomeOutput = "";
+let expenseOutput = "";
 
 // Constructors for Income and Expenses
 function Income(name, amount, recurring) {
@@ -46,16 +47,34 @@ let electricity = new Expenses("electricity", 20, true);
 let fuel = new Expenses("fuel", 20, true);
 let wedding = new Expenses("wedding", 100, false);
 
-for (let index = 0; index < incomesArr.length; index++) {
-  incomeOutput +=
-    incomesArr[index].name +
-    "   £" +
-    incomesArr[index].amount +
-    "   recurring:" +
-    incomesArr[index].recurring +
-    "\n";
-}
+// Show income
+const displayIncome = () => {
+  for (let index = 0; index < incomesArr.length; index++) {
+    incomeOutput +=
+      incomesArr[index].name +
+      "   £" +
+      incomesArr[index].amount +
+      "   recurring:" +
+      incomesArr[index].recurring +
+      "\n";
+  }
+};
 
+// Show expenses - very simular to income function did consider refactoring both into 1 function
+// and have it take arrays as a parameter but I want to keep the incomeOutput & expenseOutput seperate
+const displayExpenses = () => {
+  for (let index = 0; index < expensesArr.length; index++) {
+    expenseOutput +=
+      expensesArr[index].name +
+      "   £" +
+      expensesArr[index].amount +
+      "   recurring:" +
+      expensesArr[index].recurring +
+      "\n";
+  }
+};
+
+displayIncome();
+displayExpenses();
 console.log(incomeOutput);
-
-//const incomeDisplay = prompt(incomeOutput);
+console.log(expenseOutput);
