@@ -98,3 +98,9 @@ let disposableIncome = Number(totalIncome() - totalExpenses()).toFixed(2);
 console.log("Total income: £" + totalIncome());
 console.log("Total expenses: £" + totalExpenses());
 console.log("Disposable income: £" + disposableIncome);
+
+// alert(
+//   `Total disposable income after savings: £${(
+//     disposableIncome - savings
+//   ).toFixed(2)}`
+// );
