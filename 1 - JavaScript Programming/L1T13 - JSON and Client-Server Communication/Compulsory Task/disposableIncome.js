@@ -80,6 +80,13 @@ incomePrompt = prompt(
   incomeOutput + "\n Add new income seperated by commas eg 'tips,10,false'"
 );
 const incomePromptArray = incomePrompt.split(",");
+
+// handle null entires via Nullish coalescing operator learned from Web Docs
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
+incomePromptArray[0] = null ?? "Unpaid";
+incomePromptArray[1] = null ?? 0;
+incomePromptArray[2] = null ?? false;
+
 // add new object to incomes array
 let newIncome = new Income(
   incomePromptArray[0],
@@ -94,6 +101,10 @@ expensePrompt = prompt(
   expenseOutput + "\n Add new expense seperated by commas eg 'shoes,10,true'"
 );
 const expensePromptArray = expensePrompt.split(",");
+
+expensePromptArray[0] = null ?? "No Fee";
+expensePromptArray[1] = null ?? 0;
+expensePromptArray[2] = null ?? false;
 
 let newExpense = new Expenses(
   expensePromptArray[0],
