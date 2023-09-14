@@ -5,7 +5,7 @@ let expensesArr = [];
 let incomeOutput = "";
 let expenseOutput = "";
 
-// Constructors for Income and Expenses
+// Constructor for Income
 function Income(name, amount, recurring) {
   this.name = name;
   this.amount = amount;
@@ -14,6 +14,7 @@ function Income(name, amount, recurring) {
   incomesArr.push(this);
 }
 
+// Constructor for Expenses
 function Expenses(name, amount, recurring) {
   this.name = name;
   this.amount = amount;
@@ -22,14 +23,14 @@ function Expenses(name, amount, recurring) {
   expensesArr.push(this);
 }
 
-// Income
+// Income objects
 let janitor = new Income("salary", 100, true);
 let cleaner = new Income("salary", 200, true);
 let bouncer = new Income("salary", 300, true);
 let sales = new Income("wage", 400, false);
 let waiter = new Income("tips", 10, false);
 
-// Expenses
+// Expenses objects
 let food = new Expenses("food", 10, true);
 let water = new Expenses("water", 10, true);
 let electricity = new Expenses("electricity", 20, true);
@@ -49,8 +50,7 @@ const displayIncome = () => {
   }
 };
 
-// Show expenses - very simular to income function did consider refactoring both into 1 function
-// and have it take arrays as a parameter but I want to keep the incomeOutput & expenseOutput seperate
+// Show expenses
 const displayExpenses = () => {
   for (let i = 0; i < expensesArr.length; i++) {
     expenseOutput +=
@@ -63,7 +63,7 @@ const displayExpenses = () => {
   }
 };
 
-// reduce method learned from MDN Web Docs to sum the results
+// reduce method learned from MDN Web Docs to sum the incomes
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
 let totalIncome = () => {
   return incomesArr.reduce((total, income) => total + income.amount, 0);
@@ -111,8 +111,10 @@ while (true) {
     `You disposable income is ${disposableIncome} how much would you like to put in savings?`
   );
 
-  if (Number(savingsPrompt) > disposableIncome) {
-    alert("You won't have any money left please try again.");
+  if (Number(savingsPrompt) > disposableIncome && savingsPrompt !== "quit") {
+    alert(
+      "You won't have any money please enter a lower savings number. Or enter 'quit'."
+    );
   } else {
     break;
   }
