@@ -91,6 +91,10 @@ displayExpenses();
 console.log(incomeOutput);
 console.log(expenseOutput);
 
+// toFixed() learned from MDN Web Docs
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+let disposableIncome = Number(totalIncome() - totalExpenses()).toFixed(2);
+
 console.log("Total income: £" + totalIncome());
 console.log("Total expenses: £" + totalExpenses());
-console.log("Disposable income: £" + Number(totalIncome() - totalExpenses()));
+console.log("Disposable income: £" + disposableIncome);
