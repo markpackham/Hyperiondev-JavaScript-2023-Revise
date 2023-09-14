@@ -1,6 +1,9 @@
 let incomesArr = [];
 let expensesArr = [];
 
+let iName = "";
+let amount = 0;
+
 let incomeOutput = "";
 let expenseOutput = "";
 
@@ -26,15 +29,15 @@ function Expenses(name, amount, recurring) {
 // Add a new Income
 // Prevent default page refresh behavior learned from MDN Webdocs
 // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-function addIncome(event) {
-  incomesArr = JSON.parse(sessionStorage.getItem("incomes"));
-  let newIncome = new Income(
-    document.getElementById("iName").value,
-    document.getElementById("amount").value,
-    document.getElementsByName("recurring").value
-  );
-  incomesArr.push(newIncome);
-  event.preventDefault();
+function addIncome() {
+  console.log(document.getElementById("iName").value);
+  // incomesArr = JSON.parse(sessionStorage.getItem("incomes"));
+  // let newIncome = new Income(
+  //   document.getElementById("iName").value,
+  //   document.getElementById("amount").value
+  //   // document.getElementById("recurring")
+  // );
+  // incomesArr.push(newIncome);
 }
 
 // Income
