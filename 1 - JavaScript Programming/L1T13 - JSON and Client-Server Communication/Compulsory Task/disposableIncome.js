@@ -1,13 +1,8 @@
 let incomesArr = [];
 let expensesArr = [];
 
-let iName = "";
-let amount = 0;
-
 let incomeOutput = "";
 let expenseOutput = "";
-
-let savings = 0;
 
 // Constructors for Income and Expenses
 function Income(name, amount, recurring) {
@@ -121,12 +116,12 @@ let newExpense = new Expenses(
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
 let disposableIncome = Number(totalIncome() - totalExpenses()).toFixed(2);
 
-disposableIncomePrompt = prompt(
+savingsPrompt = prompt(
   `You disposable income is ${disposableIncome} how much would you like to put in savings?`
 );
 
 alert(
   `Total disposable income after savings: £${Number(
-    disposableIncome - disposableIncomePrompt
+    disposableIncome - savingsPrompt
   ).toFixed(2)}`
 );
