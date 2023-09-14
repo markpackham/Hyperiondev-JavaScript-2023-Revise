@@ -1,6 +1,7 @@
 let incomesArr = [];
 let expensesArr = [];
 
+// use 2 seperate outputs or they wind up getting concatenated
 let incomeOutput = "";
 let expenseOutput = "";
 
@@ -19,21 +20,6 @@ function Expenses(name, amount, recurring) {
   this.recurring = recurring;
 
   expensesArr.push(this);
-}
-
-// Add a new Income
-// Prevent default page refresh behavior learned from MDN Webdocs
-// https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-function addIncome() {
-  iName = document.getElementById("iName").value;
-  console.log(iName);
-  // incomesArr = JSON.parse(sessionStorage.getItem("incomes"));
-  // let newIncome = new Income(
-  //   document.getElementById("iName").value,
-  //   document.getElementById("amount").value
-  //   // document.getElementById("recurring")
-  // );
-  // incomesArr.push(newIncome);
 }
 
 // Income
@@ -77,7 +63,7 @@ const displayExpenses = () => {
   }
 };
 
-// reduce method learned from MDN Web Docs
+// reduce method learned from MDN Web Docs to sum the results
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
 let totalIncome = () => {
   return incomesArr.reduce((total, income) => total + income.amount, 0);
@@ -87,6 +73,7 @@ let totalExpenses = () => {
   return expensesArr.reduce((total, expense) => total + expense.amount, 0);
 };
 
+// update the incomeOutput
 displayIncome();
 
 incomePrompt = prompt(
@@ -100,12 +87,14 @@ let newIncome = new Income(
   incomePromptArray[2]
 );
 
+// update the expensesOutput
 displayExpenses();
 
 expensePrompt = prompt(
   expenseOutput + "\n Add new expense seperated by commas eg 'shoes,10,true'"
 );
 const expensePromptArray = expensePrompt.split(",");
+
 let newExpense = new Expenses(
   expensePromptArray[0],
   Number(expensePromptArray[1]),
