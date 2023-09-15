@@ -28,18 +28,18 @@ class Expenses {
 }
 
 // Income objects
-let janitor = new Income("salary", 100, true);
-let cleaner = new Income("salary", 200, true);
-let bouncer = new Income("salary", 300, true);
-let sales = new Income("wage", 400, false);
-let waiter = new Income("tips", 10, false);
+const janitor = new Income("salary", 100, true);
+const cleaner = new Income("salary", 200, true);
+const bouncer = new Income("salary", 300, true);
+const sales = new Income("wage", 400, false);
+const waiter = new Income("tips", 10, false);
 
 // Expenses objects
-let food = new Expenses("food", 10, true);
-let water = new Expenses("water", 10, true);
-let electricity = new Expenses("electricity", 20, true);
-let fuel = new Expenses("fuel", 20, true);
-let wedding = new Expenses("wedding", 100, false);
+const food = new Expenses("food", 10, true);
+const water = new Expenses("water", 10, true);
+const electricity = new Expenses("electricity", 20, true);
+const fuel = new Expenses("fuel", 20, true);
+const wedding = new Expenses("wedding", 100, false);
 
 // Show income
 const displayIncome = () => {
