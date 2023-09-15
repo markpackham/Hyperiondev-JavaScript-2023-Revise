@@ -135,8 +135,11 @@ while (true) {
   }
 }
 
+// demo session storage with savings
+sessionStorage.setItem("savings", savingsPrompt);
+
 alert(
   `Total disposable income after savings: £${Number(
-    disposableIncome - savingsPrompt
+    disposableIncome - sessionStorage.getItem("savings")
   ).toFixed(2)}`
 );
