@@ -14,6 +14,9 @@ class Income {
     this.amount = amount;
     this.recurring = recurring;
     incomesArr.push(this);
+
+    // convert array to text so can be kept in session storage
+    sessionStorage.setItem("incomes", JSON.stringify(incomesArr));
   }
 }
 
@@ -24,6 +27,8 @@ class Expenses {
     this.amount = amount;
     this.recurring = recurring;
     expensesArr.push(this);
+
+    sessionStorage.setItem("expenses", JSON.stringify(expensesArr));
   }
 }
 
