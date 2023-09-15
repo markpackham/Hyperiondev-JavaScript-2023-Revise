@@ -1,26 +1,30 @@
-let incomesArr = [];
-let expensesArr = [];
+const incomesArr = [];
+const expensesArr = [];
 
 // use 2 seperate outputs or they wind up getting concatenated
 let incomeOutput = "";
 let expenseOutput = "";
 
+// Class Constructor learned from MDN Web Docs
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor
 // Constructor for Income
-function Income(name, amount, recurring) {
-  this.name = name;
-  this.amount = amount;
-  this.recurring = recurring;
-
-  incomesArr.push(this);
+class Income {
+  constructor(name, amount, recurring) {
+    this.name = name;
+    this.amount = amount;
+    this.recurring = recurring;
+    incomesArr.push(this);
+  }
 }
 
 // Constructor for Expenses
-function Expenses(name, amount, recurring) {
-  this.name = name;
-  this.amount = amount;
-  this.recurring = recurring;
-
-  expensesArr.push(this);
+class Expenses {
+  constructor(name, amount, recurring) {
+    this.name = name;
+    this.amount = amount;
+    this.recurring = recurring;
+    expensesArr.push(this);
+  }
 }
 
 // Income objects

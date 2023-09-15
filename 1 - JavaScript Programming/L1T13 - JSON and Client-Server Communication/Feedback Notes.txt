@@ -1,0 +1,15 @@
+Aspects of the submission that could be improved
+Completeness / Correctness
+✠ Unfortunately, the values are not being stored with the use of session storage as mentioned in the second bullet point of the task requirements. 
+Please apply session storage for storing the values of the income and expense objects, as well as the other values created in the program. 
+Feel free to refer to the task pdf and this additional resource for guidance: 
+https://www.w3schools.com/jsref/prop_win_sessionstorage.asp
+
+Style
+✠ (Optional) Consider converting the constructor functions on lines 9 and 18 of disposableIncome.js to a Class 
+declaration as that is the ES2015 preferred syntax. 
+Classes can be used to create more complex object hierarchies with shared properties and methods.
+
+✠ As per the Google style guide, the const keyword should be used by default when declaring variables unless the variable needs to be reassigned. The instances of the Income and Expenses constructor functions could therefore be declared with const as those variables will not be reassigned. 
+By declaring the variables with let they can be reassigned to another data type. This may not occur in small programs however when working in a team setting on a larger codebase this could happen therefore adhering to a style guide is a best practice. 
+Feel free to refer to the Google style guide for more guidance: https://google.github.io/styleguide/jsguide.html#features-local-variable-declarations
