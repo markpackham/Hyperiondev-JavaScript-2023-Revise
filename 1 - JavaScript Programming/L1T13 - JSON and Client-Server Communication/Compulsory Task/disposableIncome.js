@@ -156,7 +156,7 @@ while (true) {
   }
 }
 
-// demo session storage with savings & disposable income
+// demo session storage with saving, disposable income and final disposable income (once savings have been deducted)
 sessionStorage.setItem("disposable_income", disposableIncome);
 
 sessionStorage.setItem("savings", savingsPrompt);
