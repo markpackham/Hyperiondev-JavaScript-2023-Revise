@@ -85,11 +85,18 @@ incomePrompt = prompt(
 );
 const incomePromptArray = incomePrompt.split(",");
 
-// handle null entires via Nullish coalescing operator learned from Web Docs
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
-incomePromptArray[0] = null ?? "Unpaid";
-incomePromptArray[1] = null ?? 0;
-incomePromptArray[2] = null ?? false;
+// handle null entires
+if (incomePromptArray[0] === null) {
+  incomePromptArray[0] = "Unpaid";
+}
+
+if (incomePromptArray[1] === null) {
+  incomePromptArray[1] = 0;
+}
+
+if (incomePromptArray[2] === null) {
+  incomePromptArray[2] = false;
+}
 
 // add new object to incomes array
 let newIncome = new Income(
@@ -106,9 +113,18 @@ expensePrompt = prompt(
 );
 const expensePromptArray = expensePrompt.split(",");
 
-expensePromptArray[0] = null ?? "No Fee";
-expensePromptArray[1] = null ?? 0;
-expensePromptArray[2] = null ?? false;
+// handle null entires
+if (expensePromptArray[0] === null) {
+  expensePromptArray[0] = "No Fee";
+}
+
+if (expensePromptArray[1] === null) {
+  expensePromptArray[1] = 0;
+}
+
+if (expensePromptArray[2] === null) {
+  expensePromptArray[2] = false;
+}
 
 let newExpense = new Expenses(
   expensePromptArray[0],
