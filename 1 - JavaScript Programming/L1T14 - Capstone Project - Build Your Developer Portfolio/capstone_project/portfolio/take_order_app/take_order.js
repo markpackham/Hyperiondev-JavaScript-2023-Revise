@@ -17,4 +17,9 @@ const fetchMainIngredientMeals = async () => {
   }
 };
 
-fetchMainIngredientMeals();
+let meal = fetchMainIngredientMeals();
+
+let mealsArr = [];
+// Math.random() learned from
+// MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+let randomMeal = Math.random(0, mealsArr.length - 1);
