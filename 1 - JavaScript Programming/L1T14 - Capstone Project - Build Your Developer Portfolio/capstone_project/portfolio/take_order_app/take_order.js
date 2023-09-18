@@ -1,4 +1,5 @@
-const mainIngredientFilter = "www.themealdb.com/api/json/v1/1/filter.php?i=";
+const mainIngredientFilter =
+  "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
 let mainIngredient = prompt(
   "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
@@ -6,10 +7,11 @@ let mainIngredient = prompt(
 
 let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
-let food = async () => {
-  let response = await fetch(mainIngredientAnswer);
-  let recipes = await response.json();
-  console.log(recipes);
-};
+function fetchMainIngredientMeals() {
+  return fetch(mainIngredientAnswer)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+}
 
-food();
+fetchMainIngredientMeals();
