@@ -33,5 +33,5 @@ meal.then(function (result) {
   // Math.random() learned from
   // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
-  console.log(mealNames[randomMeal]);
+  console.log(`Your meal will be ${mealNames[randomMeal]}`);
 });

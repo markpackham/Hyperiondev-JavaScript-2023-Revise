@@ -8,24 +8,34 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header class="container">
-        <nav class="navbar">
-            <ul>
-                <li>
-                    <a href="./index.html" target="_blank" rel="noopener noreferrer">Home</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main class="container">
-        <div id="interests">
-            <h3>Interests</h3>
-            <p>Attending Drupal Camp Scotland and Drupal Drinks Edinburgh talks. Photographing prewar Edinburgh
-                buildings, video games (RPGs, Adventure, Horror & 2D Fighting), comic books, weight lifting, heavy
-                metal, sci-fi.</p>
-        </div>
-    </main>
-    <footer>© Mark Packham. All rights reserved.</footer>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li>
+                        <a href="./index.html" target="_blank" rel="noopener noreferrer">Home</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="interests">
+                <h3>Interests</h3>
+                <p>Attending Drupal Camp Scotland and Drupal Drinks Edinburgh talks. Photographing prewar Edinburgh
+                    buildings, video games (RPGs, Adventure, Horror & 2D Fighting), comic books, weight lifting, heavy
+                    metal, sci-fi.</p>
+            </div>
+        </main>
+        <footer class="text-center">© Mark Packham
+            <script>
+                // getFullYear() learned from MDN Web Docs
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear
+                const currentYear = new Date(Date.now());
+                document.write(currentYear.getFullYear());
+            </script>
+            All rights reserved.
+        </footer>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
