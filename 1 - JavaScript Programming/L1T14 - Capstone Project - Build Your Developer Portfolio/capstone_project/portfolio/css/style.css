@@ -1,0 +1,20 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+img {
+    border-radius: 5px;
+}
+
+ul {
+    list-style: none;
+}
