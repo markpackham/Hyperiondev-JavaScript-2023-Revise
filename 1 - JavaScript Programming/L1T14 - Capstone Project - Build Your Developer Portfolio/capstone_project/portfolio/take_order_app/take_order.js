@@ -7,11 +7,14 @@ let mainIngredient = prompt(
 
 let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
-function fetchMainIngredientMeals() {
-  return fetch(mainIngredientAnswer)
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error(error));
-}
+const fetchMainIngredientMeals = async () => {
+  try {
+    const response = await fetch(mainIngredientAnswer);
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 fetchMainIngredientMeals();
