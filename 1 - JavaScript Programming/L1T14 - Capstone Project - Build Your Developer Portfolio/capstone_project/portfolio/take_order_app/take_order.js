@@ -1,12 +1,17 @@
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
-// replace later with promot()
-let mainIngredient = "avocado";
+let mainIngredientPrompt = prompt(
+  "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
+);
 
-// mainIngredient = prompt(
-//   "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
-// );
+// Adding underscores for spaces learned from
+/*
+(1955) Replacing spaces with underscores in JavaScript?, Stack Overflow. 
+Available at: https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript (Accessed: 18 September 2023). 
+*/
+// Handle entries like Bicarbonate Of Soda so they become bicarbonate_of_soda
+let mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 
 const mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
