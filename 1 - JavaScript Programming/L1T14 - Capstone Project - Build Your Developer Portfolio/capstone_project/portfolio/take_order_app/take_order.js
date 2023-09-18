@@ -1,13 +1,14 @@
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
+// replace later with promot()
 let mainIngredient = "avocado";
 
 // mainIngredient = prompt(
 //   "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
 // );
 
-let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
+const mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
 const fetchMainIngredientMeals = async () => {
   try {
@@ -19,15 +20,14 @@ const fetchMainIngredientMeals = async () => {
   }
 };
 
-let meal = fetchMainIngredientMeals();
-let mealsArr = [];
+const meal = fetchMainIngredientMeals();
 
 // Promise gets resolved
 meal.then(function (result) {
   // Obtain the array of the object
-  let mealsList = result.meals;
+  const mealsList = result.meals;
 
-  // add to new array to just hold meal names
+  // Add to new array to just hold meal names
   const mealNames = mealsList.map((meal) => meal.strMeal);
 
   // Math.random() learned from
