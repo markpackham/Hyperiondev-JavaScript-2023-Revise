@@ -1,3 +1,8 @@
+body {
+    background-color: hsl(60, 15%, 72%);
+    color: hsl(0, 4%, 14%);
+}
+
 a {
     text-decoration: none;
 }
@@ -12,9 +17,14 @@ h2 {
 }
 
 img {
-    padding: 10px
+    box-shadow: 10px 5px 5px hsl(0, 1%, 48%);
 }
 
 ul {
     list-style: none;
+}
+
+.card {
+    background-color: hsl(60, 45%, 78%);
+    box-shadow: 10px 5px 5px hsl(0, 1%, 48%);
 }
