@@ -26,12 +26,62 @@
                 <img id="computer-profile" class="img-fluid" src="../images/computer.jpg" alt="computer">
                 <div id="interests">
                     <h1>Interests</h1>
-                    <p>Attending Drupal Camp Scotland and Drupal Drinks Edinburgh talks. Photographing prewar Edinburgh
-                        buildings, video games (RPGs, Adventure, Horror & 2D Fighting), comic books, weight lifting,
-                        heavy
-                        metal, sci-fi.</p>
                 </div>
             </div>
+
+
+            <!-- Learned about Boostrap Modals from
+            Learn Bootstrap: A Step-by-Step Tutorial v5.3 (2023) YouTube. 
+            Available at: https://www.youtube.com/watch?v=MTRHi0gxPEo (Accessed: 19 September 2023). 
+            -->
+            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Attending Drupal Camp Scotland and Drupal Drinks Edinburgh talks. Photographing prewar
+                                Edinburgh
+                                buildings, video games (RPGs, Adventure, Horror & 2D Fighting), comic books, weight
+                                lifting,
+                                heavy
+                                metal, sci-fi.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
+                                data-bs-toggle="modal">Show More Interests</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis aut explicabo tempore
+                            totam obcaecati a dolor animi id accusantium iusto dicta alias exercitationem, quos, quidem
+                            corrupti, doloribus molestiae minus rem?
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
+                                data-bs-toggle="modal">Back To Primary Interests</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Show
+                Interests</a>
+
+
+
         </main>
         <footer class="text-center"><i>© Mark Packham
                 <script>
