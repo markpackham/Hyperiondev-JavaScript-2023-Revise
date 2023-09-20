@@ -1,6 +1,19 @@
 const ordersArr = [];
+let orderNumber = 0;
 
 let meal_description = "";
+
+// Order Class
+class Order {
+  constructor(meal_description, order_number, completion_status = false) {
+    this.meal_description = meal_description;
+    this.order_number = order_number;
+    this.completion_status = completion_status;
+    ordersArr.push(this);
+
+    sessionStorage.setItem("orders", JSON.stringify(ordersArr));
+  }
+}
 
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
@@ -24,6 +37,7 @@ const fetchMainIngredientMeals = async () => {
     let response = await fetch(mainIngredientAnswer);
     let data = await response.json();
 
+    // Implement recursion safety check for Ingredients that don't exist later if there is time
     if (data.meals === null) {
       alert("That Ingredient does not exist!");
 
@@ -55,18 +69,11 @@ meal.then(function (result) {
   // Math.random() learned from
   // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
-  console.log(`Your meal will be ${mealNames[randomMeal]}`);
-  return mealNames[randomMeal];
+  // console.log(`Your meal will be ${mealNames[randomMeal]}`);
+
+  orderNumber++;
+
+  // Create Order
+  let order = new Order(mealNames[randomMeal], orderNumber, false);
+  console.log(order);
 });
-
-// Order Constructor
-class Order {
-  constructor(meal_description, order_number, completion_status = false) {
-    this.meal_description = meal_description;
-    this.order_number = order_number;
-    this.completion_status = completion_status;
-    ordersArr.push(this);
-
-    sessionStorage.setItem("orders", JSON.stringify(ordersArr));
-  }
-}
