@@ -8,6 +8,15 @@
     text-align: center;
 }
 
+.btn {
+    background-color: hsl(58, 85%, 70%);
+    border: solid 1px;
+}
+
+.btn:hover {
+    background-color: hsl(58, 31%, 50%);
+}
+
 .navbar {
     max-width: 150px;
 }
