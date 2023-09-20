@@ -1,14 +1,22 @@
+:root {
+    --background-color-main: hsl(60, 15%, 72%);
+    --box-shadow-main: 10px 5px 5px hsl(0, 1%, 48%);
+    --card-bg-color: hsl(60, 45%, 78%);
+}
+
 body {
-    background-color: hsl(60, 15%, 72%);
+    background-color: var(--background-color-main);
     color: hsl(0, 4%, 14%);
 }
 
 a {
     text-decoration: none;
+    color: hsl(58, 37%, 32%);
 }
 
 a:hover {
     font-weight: bold;
+    color: hsl(59, 34%, 24%);
 }
 
 h1,
@@ -17,7 +25,7 @@ h2 {
 }
 
 img {
-    box-shadow: 10px 5px 5px hsl(0, 1%, 48%);
+    box-shadow: var(--box-shadow-main);
 }
 
 ul {
@@ -25,6 +33,12 @@ ul {
 }
 
 .card {
-    background-color: hsl(60, 45%, 78%);
-    box-shadow: 10px 5px 5px hsl(0, 1%, 48%);
+    background-color: var(--card-bg-color);
+    box-shadow: var(--box-shadow-main);
+    max-width: 900px;
+}
+
+.navbar {
+    background-color: hsl(58, 85%, 70%);
+    box-shadow: var(--box-shadow-main);
 }
