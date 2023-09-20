@@ -28,6 +28,11 @@ a:hover {
     background-color: hsl(58, 31%, 50%);
 }
 
+footer {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
 h1,
 h2 {
     text-align: center;
