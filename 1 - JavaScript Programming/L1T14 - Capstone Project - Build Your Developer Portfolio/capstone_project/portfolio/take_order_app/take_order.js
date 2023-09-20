@@ -1,3 +1,5 @@
+const ordersArr = [];
+
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
@@ -44,3 +46,15 @@ meal.then(function (result) {
     console.log(`Your meal will be ${mealNames[randomMeal]}`);
   }
 });
+
+// Order Constructor
+class Order {
+  constructor(description, order_number, completion_status = false) {
+    this.description = description;
+    this.order_number = order_number;
+    this.completion_status = completion_status;
+    ordersArr.push(this);
+
+    sessionStorage.setItem("orders", JSON.stringify(ordersArr));
+  }
+}
