@@ -1,3 +1,16 @@
+const fullIngredientList = [];
+
+// Fetch full list of valid ingredients
+fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+  .then((response) => response.json())
+  .then((data) => {
+    const fullIngredientList = data.meals.map((meal) =>
+      meal.strIngredient.toLowerCase().split(" ").join("_")
+    );
+    console.log(fullIngredientList);
+  })
+  .catch((error) => console.error(error));
+
 const ordersArr = [];
 let orderNumber = 0;
 
