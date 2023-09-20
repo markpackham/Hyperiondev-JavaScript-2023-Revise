@@ -23,6 +23,19 @@ const fetchMainIngredientMeals = async () => {
   try {
     const response = await fetch(mainIngredientAnswer);
     const data = await response.json();
+
+    if (data.meals === null) {
+      alert("That Ingredient does not exist!");
+
+      mainIngredientPrompt = prompt(
+        "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
+      );
+      mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
+      mainIngredientAnswer = mainIngredientFilter + mainIngredient;
+      console.log(mainIngredientAnswer);
+      fetchMainIngredientMeals();
+    }
+
     return data;
   } catch (error) {
     console.error(error);
@@ -31,24 +44,12 @@ const fetchMainIngredientMeals = async () => {
 
 let meal = fetchMainIngredientMeals();
 
-// Recursive function to make sure no one enters an ingredient that doesn't exist
-function processMeals(mealsList) {
-  if (mealsList === null) {
-    alert("Sorry that does not exist please enter another ingredient.");
-  } else {
-    // Add to new array to just hold meal names
-    const mealNames = mealsList.map((meal) => meal.strMeal);
-    return mealNames;
-  }
-}
-
 // Promise gets resolved
 meal.then(function (result) {
   // Obtain the array of the object
   const mealsList = result.meals;
 
-  // Call the recursive function
-  processMeals(mealsList);
+  const mealNames = mealsList.map((meal) => meal.strMeal);
 
   // Math.random() learned from
   // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
