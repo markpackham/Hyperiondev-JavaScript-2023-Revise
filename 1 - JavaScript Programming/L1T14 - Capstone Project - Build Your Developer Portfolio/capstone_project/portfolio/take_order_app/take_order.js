@@ -71,9 +71,10 @@ meal.then(function (result) {
   randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
   // console.log(`Your meal will be ${mealNames[randomMeal]}`);
 
-  orderNumber++;
+  orderNumber = ordersArr.length + 1;
 
   // Create Order
   let order = new Order(mealNames[randomMeal], orderNumber, false);
-  console.log(order);
 });
+
+console.log(ordersArr);
