@@ -12,6 +12,7 @@
 }
 
 #about-me-intro,
+.blockquote,
 .work-content {
     background: rgb(232, 232, 200);
     background: linear-gradient(90deg, rgba(232, 232, 200, 1) 0%, rgba(226, 226, 177, 1) 35%, rgba(207, 207, 146, 1) 100%);
