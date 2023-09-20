@@ -21,8 +21,8 @@ let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
 const fetchMainIngredientMeals = async () => {
   try {
-    const response = await fetch(mainIngredientAnswer);
-    const data = await response.json();
+    let response = await fetch(mainIngredientAnswer);
+    let data = await response.json();
 
     if (data.meals === null) {
       alert("That Ingredient does not exist!");
@@ -32,8 +32,9 @@ const fetchMainIngredientMeals = async () => {
       );
       mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
       mainIngredientAnswer = mainIngredientFilter + mainIngredient;
-      console.log(mainIngredientAnswer);
-      fetchMainIngredientMeals();
+
+      response = await fetch(mainIngredientAnswer);
+      data = await response.json();
     }
 
     return data;
