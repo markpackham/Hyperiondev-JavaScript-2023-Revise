@@ -1,29 +1,86 @@
-const fullIngredientList = [];
-
-// Fetch full list of valid ingredients
-const fetchIngredients = () => {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
-      .then((response) => response.json())
-      .then((data) => {
-        const fullIngredientList = data.meals.map((meal) =>
-          meal.strIngredient.toLowerCase().split(" ").join("_")
-        );
-        resolve(fullIngredientList);
-      })
-      .catch((error) => reject(error));
-  });
-};
-
-// Call my Promise to make sure I get all my ingredients
-fetchIngredients()
-  .then((fullIngredientList) => console.log(fullIngredientList))
-  .catch((error) => console.error(error));
-
+// placeholder Ingredient list array till fetch request for all ingredients can be made to work
+const fullIngredientList = [
+  "chicken",
+  "salmon",
+  "beef",
+  "pork",
+  "avocado",
+  "apple_cider_vinegar",
+  "asparagus",
+  "aubergine",
+  "baby_plum_tomatoes",
+  "bacon",
+  "baking_powder",
+  "balsamic_vinegar",
+  "basil",
+  "basil_leaves",
+  "basmati_rice",
+  "bay_leaf",
+  "bay_leaves",
+  "beef_brisket",
+  "beef_fillet",
+  "beef_gravy",
+  "beef_stock",
+  "bicarbonate_of_soda",
+  "biryani_masala",
+  "black_pepper",
+  "black_treacle",
+  "borlotti_beans",
+  "bowtie_pasta",
+  "bramley_apples",
+  "brandy",
+  "bread",
+  "breadcrumbs",
+  "broccoli",
+  "brown_lentils",
+  "brown_rice",
+  "brown_sugar",
+  "butter",
+  "cacao",
+  "cajun",
+  "canned_tomatoes",
+  "cannellini_beans",
+  "cardamom",
+  "carrots",
+  "cashew_nuts",
+  "cashews",
+  "caster_sugar",
+  "cayenne_pepper",
+  "celeriac",
+  "celery",
+  "celery_salt",
+  "challots",
+  "charlotte_potatoes",
+  "cheddar_cheese",
+  "cheese",
+  "cheese_curds",
+  "cherry_tomatoes",
+  "chestnut_mushroom",
+  "chicken_breast",
+];
 const ordersArr = [];
 let orderNumber = 0;
-
 let meal_description = "";
+
+// Fetch full list of valid ingredients, takes wy too long to fetch so for now all ingredients hard coded into array
+// const fetchIngredients = () => {
+//   return new Promise((resolve, reject) => {
+//     fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+//       .then((response) => response.json())
+//       .then((data) => {
+//         const fullIngredientList = data.meals.map((meal) =>
+//           meal.strIngredient.toLowerCase().split(" ").join("_")
+//         );
+//         resolve(fullIngredientList);
+//       })
+//       .catch((error) => reject(error));
+//   });
+// };
+
+// // Call my Promise to make sure I get all my ingredients
+// fetchIngredients()
+//   .then((fullIngredientList) => console.log(fullIngredientList))
+//   .catch((error) => console.error(error));
 
 // Order Class
 class Order {
@@ -52,26 +109,28 @@ let mainIngredientPrompt = prompt(
 // Handle entries like "Bicarbonate Of Soda" so it becomes bicarbonate_of_soda
 let mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 
+// Recursive function if user enters an ingredient that doesn't exist
+function callForIngredientAgain() {
+  mainIngredientPrompt = prompt(
+    "Please enter a valid ingredient eg(chicken, beef, salmon, pork, avocado)?"
+  );
+  mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
+}
+
+while (true) {
+  if (!fullIngredientList.includes(mainIngredient)) {
+    callForIngredientAgain();
+  } else {
+    break;
+  }
+}
+
 let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
 const fetchMainIngredientMeals = async () => {
   try {
     let response = await fetch(mainIngredientAnswer);
     let data = await response.json();
-
-    // Implement recursion safety check for Ingredients that don't exist later if there is time
-    if (data.meals === null) {
-      alert("That Ingredient does not exist!");
-
-      mainIngredientPrompt = prompt(
-        "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
-      );
-      mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
-      mainIngredientAnswer = mainIngredientFilter + mainIngredient;
-
-      response = await fetch(mainIngredientAnswer);
-      data = await response.json();
-    }
 
     return data;
   } catch (error) {
