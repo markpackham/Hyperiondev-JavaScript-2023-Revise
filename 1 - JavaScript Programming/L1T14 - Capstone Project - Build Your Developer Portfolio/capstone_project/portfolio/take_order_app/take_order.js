@@ -38,12 +38,7 @@ function processMeals(mealsList) {
   } else {
     // Add to new array to just hold meal names
     const mealNames = mealsList.map((meal) => meal.strMeal);
-
-    // Math.random() learned from
-    // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-    randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
-    console.log(`Your meal will be ${mealNames[randomMeal]}`);
-    return mealNames[randomMeal];
+    return mealNames;
   }
 }
 
@@ -54,6 +49,12 @@ meal.then(function (result) {
 
   // Call the recursive function
   processMeals(mealsList);
+
+  // Math.random() learned from
+  // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+  randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
+  console.log(`Your meal will be ${mealNames[randomMeal]}`);
+  return mealNames[randomMeal];
 });
 
 // Order Constructor
