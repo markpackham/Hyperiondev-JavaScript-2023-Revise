@@ -16,5 +16,6 @@
 }
 
 .navbar {
+    margin: auto;
     max-width: 230px;
 }
