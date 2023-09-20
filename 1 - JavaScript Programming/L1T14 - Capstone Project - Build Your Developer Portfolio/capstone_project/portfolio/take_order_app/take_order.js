@@ -1,5 +1,7 @@
 const ordersArr = [];
 
+let meal_description = "";
+
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
@@ -15,7 +17,7 @@ let mainIngredientPrompt = prompt(
 // Handle entries like "Bicarbonate Of Soda" so it becomes bicarbonate_of_soda
 let mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 
-const mainIngredientAnswer = mainIngredientFilter + mainIngredient;
+let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
 const fetchMainIngredientMeals = async () => {
   try {
@@ -27,15 +29,12 @@ const fetchMainIngredientMeals = async () => {
   }
 };
 
-const meal = fetchMainIngredientMeals();
+let meal = fetchMainIngredientMeals();
 
-// Promise gets resolved
-meal.then(function (result) {
-  // Obtain the array of the object
-  const mealsList = result.meals;
-
+// Recursive function to make sure no one enters an ingredient that doesn't exist
+function processMeals(mealsList) {
   if (mealsList === null) {
-    console.log("ERRRORR!!!!!");
+    alert("Sorry that does not exist please enter another ingredient.");
   } else {
     // Add to new array to just hold meal names
     const mealNames = mealsList.map((meal) => meal.strMeal);
@@ -44,13 +43,23 @@ meal.then(function (result) {
     // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
     console.log(`Your meal will be ${mealNames[randomMeal]}`);
+    return mealNames[randomMeal];
   }
+}
+
+// Promise gets resolved
+meal.then(function (result) {
+  // Obtain the array of the object
+  const mealsList = result.meals;
+
+  // Call the recursive function
+  processMeals(mealsList);
 });
 
 // Order Constructor
 class Order {
-  constructor(description, order_number, completion_status = false) {
-    this.description = description;
+  constructor(meal_description, order_number, completion_status = false) {
+    this.meal_description = meal_description;
     this.order_number = order_number;
     this.completion_status = completion_status;
     ordersArr.push(this);
