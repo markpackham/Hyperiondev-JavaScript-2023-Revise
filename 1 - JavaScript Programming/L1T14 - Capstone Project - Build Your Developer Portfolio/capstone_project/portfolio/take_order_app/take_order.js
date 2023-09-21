@@ -110,12 +110,12 @@ let mainIngredientPrompt = prompt(
 let mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 
 // Recursive function if user enters an ingredient that doesn't exist
-function callForIngredientAgain() {
+const callForIngredientAgain = () => {
   mainIngredientPrompt = prompt(
     "Please enter a valid ingredient eg(chicken, beef, salmon, pork, avocado)?"
   );
   mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
-}
+};
 
 while (true) {
   if (!fullIngredientList.includes(mainIngredient)) {
