@@ -15,6 +15,10 @@
     margin: 1rem;
 }
 
+.interests-btn-container {
+    text-align: center;
+}
+
 .navbar {
     margin: auto;
     max-width: 230px;
