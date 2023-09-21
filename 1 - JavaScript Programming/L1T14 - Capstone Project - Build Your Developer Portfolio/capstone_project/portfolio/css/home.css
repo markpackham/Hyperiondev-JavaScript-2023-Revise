@@ -19,3 +19,20 @@
     padding: 1rem;
     margin: 1rem;
 }
+
+/*
+Media Queries learned from
+(No date) CSS @media rule. 
+Available at: https://www.w3schools.com/cssref/css3_pr_mediaquery.php 
+(Accessed: 21 September 2023). 
+*/
+@media screen and (max-width: 991px) {
+
+    /* .navbar {
+        max-width: 440px;
+    } */
+
+    nav ul {
+        margin: auto;
+    }
+}
