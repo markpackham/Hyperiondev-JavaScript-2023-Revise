@@ -60,10 +60,10 @@ const fullIngredientList = [
 ];
 
 // Variables
-let ordersArr = [];
-let ordersStatusArr = [];
 const completeOrdersArray = [];
 const incompleteOrdersArray = [];
+let ordersArr = [];
+let ordersStatusArr = [];
 let orderNumber = 0;
 let lastOrderNumber = 0;
 let meal_description = "";
@@ -170,8 +170,8 @@ const iterateCompleteOrders = (ordersStatusArr) => {
 // Get all meals based off ingredient
 const fetchMainIngredientMeals = async () => {
   try {
-    let response = await fetch(mainIngredientAnswer);
-    let data = await response.json();
+    const response = await fetch(mainIngredientAnswer);
+    const data = await response.json();
 
     return data;
   } catch (error) {
@@ -179,7 +179,7 @@ const fetchMainIngredientMeals = async () => {
   }
 };
 
-let meal = fetchMainIngredientMeals();
+const meal = fetchMainIngredientMeals();
 
 // Promise gets resolved
 meal.then(function (result) {
