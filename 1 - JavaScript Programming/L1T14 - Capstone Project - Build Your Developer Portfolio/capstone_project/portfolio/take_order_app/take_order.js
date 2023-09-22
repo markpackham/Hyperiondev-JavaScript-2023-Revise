@@ -62,8 +62,8 @@ const fullIngredientList = [
 // Variables
 let ordersArr = [];
 let ordersStatusArr = [];
-let completeOrdersArray = [];
-let incompleteOrdersArray = [];
+const completeOrdersArray = [];
+const incompleteOrdersArray = [];
 let orderNumber = 0;
 let lastOrderNumber = 0;
 let meal_description = "";
@@ -93,9 +93,9 @@ class Order {
 // Generate test data
 const avocado1 = new Order("Chocolate Avocado Mousse", 1, "completed");
 const avocado2 = new Order("Crock Pot Chicken Baked Tacos", 2, "completed");
-const salmon1 = new Order("Salmon Avocado Salad", 3, "incomplete");
-const salmon2 = new Order("Honey Teriyaki Salmon", 4, "incomplete");
-const salmon3 = new Order("Salmon Prawn Risotto", 5, "incomplete");
+const salmon1 = new Order("Salmon Avocado Salad", 3, "completed");
+const salmon2 = new Order("Honey Teriyaki Salmon", 4, "completed");
+const salmon3 = new Order("Salmon Prawn Risotto", 5, "completed");
 
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
@@ -167,6 +167,7 @@ const iterateCompleteOrders = (ordersStatusArr) => {
   }
 };
 
+// Get all meals based off ingredient
 const fetchMainIngredientMeals = async () => {
   try {
     let response = await fetch(mainIngredientAnswer);
