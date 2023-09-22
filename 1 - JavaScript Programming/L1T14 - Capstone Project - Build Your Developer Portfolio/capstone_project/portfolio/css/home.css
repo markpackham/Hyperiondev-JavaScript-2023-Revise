@@ -30,10 +30,6 @@ Available at: https://www.w3schools.com/cssref/css3_pr_mediaquery.php
 */
 @media screen and (max-width: 991px) {
 
-    /* .navbar {
-        max-width: 440px;
-    } */
-
     nav ul {
         margin: auto;
     }
