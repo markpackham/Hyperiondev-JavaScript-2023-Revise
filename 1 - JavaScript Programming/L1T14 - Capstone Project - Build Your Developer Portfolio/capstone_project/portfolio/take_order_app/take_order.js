@@ -114,6 +114,13 @@ const callForIngredientAgain = () => {
   mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 };
 
+// Call if user enter wrong number for order
+const callForOrderNumberAgain = () => {
+  incompleteOrders = prompt(
+    `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
+  );
+};
+
 while (true) {
   // Recursive function if user enters an ingredient that doesn't exist eg a null entry
   if (!fullIngredientList.includes(mainIngredient)) {
@@ -183,9 +190,8 @@ meal.then(function (result) {
     ) {
       break;
     } else {
-      incompleteOrders = prompt(
-        `Please enter a valid order number! \n Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
-      );
+      alert("Sorry that order number was wrong please try again.");
+      callForOrderNumberAgain();
     }
   }
 });
