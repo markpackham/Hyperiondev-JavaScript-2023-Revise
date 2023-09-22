@@ -172,5 +172,20 @@ meal.then(function (result) {
 
   iterateIncompleteOrders(ordersStatusArr);
 
-  incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
+  incompleteOrders = prompt(
+    `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
+  );
+
+  while (true) {
+    if (
+      Number(incompleteOrders) > -1 &&
+      Number(incompleteOrders) < lastOrderNumber
+    ) {
+      break;
+    } else {
+      incompleteOrders = prompt(
+        `Please enter a valid order number! \n Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
+      );
+    }
+  }
 });
