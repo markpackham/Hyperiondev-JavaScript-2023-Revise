@@ -61,11 +61,11 @@ const fullIngredientList = [
 
 // Variables
 const ordersArr = [];
+let ordersStatusArr = [];
 let incompleteOrdersArray = [];
 let orderNumber = 0;
 let lastOrderNumber = 0;
 let meal_description = "";
-let ordersArray = [];
 
 // Order Class
 class Order {
@@ -128,8 +128,8 @@ let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
 // Use for of loop to iterate through our array and add incomplete orders
 // Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
-const iterateIncompleteOrders = (ordersArray) => {
-  for (let order of ordersArray) {
+const iterateIncompleteOrders = (ordersStatusArr) => {
+  for (let order of ordersStatusArr) {
     if (order.completion_status === false) {
       incompleteOrdersArray.push(
         "\n" + order.order_number + " " + order.meal_description
@@ -168,9 +168,9 @@ meal.then(function (result) {
   // Create Order
   let order = new Order(mealNames[randomMeal], orderNumber, false);
 
-  ordersArray = JSON.parse(sessionStorage.getItem("orders"));
+  ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
 
-  iterateIncompleteOrders(ordersArray);
+  iterateIncompleteOrders(ordersStatusArr);
 
   incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
 });
