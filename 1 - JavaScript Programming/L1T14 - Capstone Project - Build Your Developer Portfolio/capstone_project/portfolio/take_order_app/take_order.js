@@ -174,11 +174,16 @@ meal.then(function (result) {
 });
 
 let ordersArray = JSON.parse(sessionStorage.getItem("orders"));
+let incompleteOrdersArray = [];
 
-// Use for of loop to iterate through our array
+// Use for of loop to iterate through our array and add incomplete orders
 // Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
 for (let order of ordersArray) {
-  console.log(order);
+  if (order.completion_status === false) {
+    incompleteOrdersArray.push(
+      order.order_number + " " + order.meal_description
+    );
+  }
 }
 
-//incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
+incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
