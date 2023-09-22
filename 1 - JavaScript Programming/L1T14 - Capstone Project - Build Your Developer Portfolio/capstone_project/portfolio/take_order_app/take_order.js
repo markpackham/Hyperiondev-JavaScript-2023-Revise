@@ -58,8 +58,10 @@ const fullIngredientList = [
   "chestnut_mushroom",
   "chicken_breast",
 ];
+
 const ordersArr = [];
 let orderNumber = 0;
+let lastOrderNumber = 0;
 let meal_description = "";
 
 // Fetch full list of valid ingredients, takes wy too long to fetch so for now all ingredients hard coded into array
@@ -91,8 +93,20 @@ class Order {
     ordersArr.push(this);
 
     sessionStorage.setItem("orders", JSON.stringify(ordersArr));
+    // Store last order number
+    sessionStorage.setItem(
+      "last_order_number",
+      (lastOrderNumber = ordersArr.length + 1)
+    );
   }
 }
+
+// Generate test data
+const avocado1 = new Order("Chocolate Avocado Mousse", 1, true);
+const avocado2 = new Order("Crock Pot Chicken Baked Tacos", 2, true);
+const salmon1 = new Order("Salmon Avocado Salad", 3, false);
+const salmon2 = new Order("Honey Teriyaki Salmon", 4, false);
+const salmon3 = new Order("Salmon Prawn Risotto", 5, false);
 
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
@@ -109,7 +123,7 @@ let mainIngredientPrompt = prompt(
 // Handle entries like "Bicarbonate Of Soda" so it becomes bicarbonate_of_soda
 let mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 
-// Recursive function if user enters an ingredient that doesn't exist
+// Call user to re-enter their order due to an error
 const callForIngredientAgain = () => {
   mainIngredientPrompt = prompt(
     "Please enter a valid ingredient eg(chicken, beef, salmon, pork, avocado)?"
@@ -118,6 +132,7 @@ const callForIngredientAgain = () => {
 };
 
 while (true) {
+  // Recursive function if user enters an ingredient that doesn't exist eg a null entry
   if (!fullIngredientList.includes(mainIngredient)) {
     callForIngredientAgain();
   } else {
@@ -158,4 +173,12 @@ meal.then(function (result) {
   let order = new Order(mealNames[randomMeal], orderNumber, false);
 });
 
-console.log(ordersArr);
+let ordersArray = JSON.parse(sessionStorage.getItem("orders"));
+
+// Use for of loop to iterate through our array
+// Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+for (let order of ordersArray) {
+  console.log(order);
+}
+
+//incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
