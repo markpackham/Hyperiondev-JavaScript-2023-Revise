@@ -62,10 +62,12 @@ const fullIngredientList = [
 // Variables
 let ordersArr = [];
 let ordersStatusArr = [];
+let completeOrdersArray = [];
 let incompleteOrdersArray = [];
 let orderNumber = 0;
 let lastOrderNumber = 0;
 let meal_description = "";
+let final_message = "";
 
 // Order Class
 class Order {
@@ -115,9 +117,15 @@ const callForIngredientAgain = () => {
 };
 
 // Call if user enter wrong number for order
-const callForOrderNumberAgain = () => {
+const callForOrderNumberAgainIncomplete = () => {
   incompleteOrders = prompt(
     `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
+  );
+};
+
+const callForOrderNumberAgainComplete = () => {
+  completeOrders = prompt(
+    `Complete orders are ${completeOrdersArray} \n please enter an order you wish to mark as "Incomplete"`
   );
 };
 
@@ -139,6 +147,16 @@ const iterateIncompleteOrders = (ordersStatusArr) => {
   for (let order of ordersStatusArr) {
     if (order.completion_status === false) {
       incompleteOrdersArray.push(
+        "\n" + order.order_number + " " + order.meal_description
+      );
+    }
+  }
+};
+
+const iterateCompleteOrders = (ordersStatusArr) => {
+  for (let order of ordersStatusArr) {
+    if (order.completion_status === true) {
+      completeOrdersArray.push(
         "\n" + order.order_number + " " + order.meal_description
       );
     }
@@ -180,7 +198,7 @@ meal.then(function (result) {
   iterateIncompleteOrders(ordersStatusArr);
 
   incompleteOrders = prompt(
-    `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
+    `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete" or 0 to skip`
   );
 
   while (true) {
@@ -191,7 +209,7 @@ meal.then(function (result) {
       break;
     } else {
       alert("Sorry that order number was wrong please try again.");
-      callForOrderNumberAgain();
+      callForOrderNumberAgainIncomplete();
     }
   }
 
@@ -202,5 +220,45 @@ meal.then(function (result) {
       order.completion_status = true;
     }
   }
+
+  ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
+
+  iterateCompleteOrders(ordersStatusArr);
+
+  completeOrders = prompt(
+    `Complete orders are ${completeOrdersArray} \n please enter an order you wish to mark as "Incomplete or 0 to skip"`
+  );
+
+  while (true) {
+    if (
+      Number(completeOrders) > -1 &&
+      Number(completeOrders) < lastOrderNumber
+    ) {
+      break;
+    } else {
+      alert("Sorry that order number was wrong please try again.");
+      callForOrderNumberAgainComplete();
+    }
+  }
+
+  for (order of ordersArr) {
+    if (Number(completeOrders) === order.order_number) {
+      order.completion_status = false;
+    }
+  }
+
   sessionStorage.setItem("orders", JSON.stringify(ordersArr));
+  ordersArr = JSON.parse(sessionStorage.getItem("orders"));
+
+  for (order of orderArr) {
+    final_message +=
+      order.order_number +
+      " " +
+      order.meal_description +
+      " " +
+      order.completion_status +
+      "\n";
+  }
+
+  console.log(final_message);
 });
