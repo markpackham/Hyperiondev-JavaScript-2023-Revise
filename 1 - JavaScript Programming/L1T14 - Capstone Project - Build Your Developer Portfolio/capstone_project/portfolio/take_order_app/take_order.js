@@ -71,7 +71,11 @@ let final_message = "";
 
 // Order Class
 class Order {
-  constructor(meal_description, order_number, completion_status = false) {
+  constructor(
+    meal_description,
+    order_number,
+    completion_status = "incomplete"
+  ) {
     this.meal_description = meal_description;
     this.order_number = order_number;
     this.completion_status = completion_status;
@@ -81,17 +85,17 @@ class Order {
     // Store last order number
     sessionStorage.setItem(
       "last_order_number",
-      (lastOrderNumber = ordersArr.length + 1)
+      (lastOrderNumber = ordersArr.length)
     );
   }
 }
 
 // Generate test data
-const avocado1 = new Order("Chocolate Avocado Mousse", 1, true);
-const avocado2 = new Order("Crock Pot Chicken Baked Tacos", 2, true);
-const salmon1 = new Order("Salmon Avocado Salad", 3, false);
-const salmon2 = new Order("Honey Teriyaki Salmon", 4, false);
-const salmon3 = new Order("Salmon Prawn Risotto", 5, false);
+const avocado1 = new Order("Chocolate Avocado Mousse", 1, "completed");
+const avocado2 = new Order("Crock Pot Chicken Baked Tacos", 2, "completed");
+const salmon1 = new Order("Salmon Avocado Salad", 3, "incomplete");
+const salmon2 = new Order("Honey Teriyaki Salmon", 4, "incomplete");
+const salmon3 = new Order("Salmon Prawn Risotto", 5, "incomplete");
 
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
@@ -145,7 +149,7 @@ let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 // Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
 const iterateIncompleteOrders = (ordersStatusArr) => {
   for (let order of ordersStatusArr) {
-    if (order.completion_status === false) {
+    if (order.completion_status === "incomplete") {
       incompleteOrdersArray.push(
         "\n" + order.order_number + " " + order.meal_description
       );
@@ -155,7 +159,7 @@ const iterateIncompleteOrders = (ordersStatusArr) => {
 
 const iterateCompleteOrders = (ordersStatusArr) => {
   for (let order of ordersStatusArr) {
-    if (order.completion_status === true) {
+    if (order.completion_status === "completed") {
       completeOrdersArray.push(
         "\n" + order.order_number + " " + order.meal_description
       );
@@ -191,7 +195,7 @@ meal.then(function (result) {
   orderNumber = ordersArr.length + 1;
 
   // Create new Order
-  let order = new Order(mealNames[randomMeal], orderNumber, false);
+  let order = new Order(mealNames[randomMeal], orderNumber, "incomplete");
 
   ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
 
@@ -204,7 +208,7 @@ meal.then(function (result) {
   while (true) {
     if (
       Number(incompleteOrders) > -1 &&
-      Number(incompleteOrders) < lastOrderNumber
+      Number(incompleteOrders) <= lastOrderNumber
     ) {
       break;
     } else {
@@ -217,7 +221,7 @@ meal.then(function (result) {
 
   for (order of ordersArr) {
     if (Number(incompleteOrders) === order.order_number) {
-      order.completion_status = true;
+      order.completion_status = "completed";
     }
   }
 
@@ -232,7 +236,7 @@ meal.then(function (result) {
   while (true) {
     if (
       Number(completeOrders) > -1 &&
-      Number(completeOrders) < lastOrderNumber
+      Number(completeOrders) <= lastOrderNumber
     ) {
       break;
     } else {
@@ -243,7 +247,7 @@ meal.then(function (result) {
 
   for (order of ordersArr) {
     if (Number(completeOrders) === order.order_number) {
-      order.completion_status = false;
+      order.completion_status = "incomplete";
     }
   }
 
@@ -253,12 +257,16 @@ meal.then(function (result) {
   for (order of ordersArr) {
     final_message +=
       order.order_number +
-      " " +
+      " - " +
       order.meal_description +
-      " " +
+      " - " +
       order.completion_status +
       "\n";
   }
 
-  alert(`Full list of orders \n${final_message}`);
+  lastOrderNumber = sessionStorage.getItem("last_order_number");
+
+  alert(
+    `Full list of orders \n${final_message}\nLast order number is ${lastOrderNumber}`
+  );
 });
