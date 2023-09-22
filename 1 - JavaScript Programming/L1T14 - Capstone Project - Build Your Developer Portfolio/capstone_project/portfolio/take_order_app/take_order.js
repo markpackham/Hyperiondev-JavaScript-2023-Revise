@@ -250,7 +250,7 @@ meal.then(function (result) {
   sessionStorage.setItem("orders", JSON.stringify(ordersArr));
   ordersArr = JSON.parse(sessionStorage.getItem("orders"));
 
-  for (order of orderArr) {
+  for (order of ordersArr) {
     final_message +=
       order.order_number +
       " " +
@@ -260,5 +260,5 @@ meal.then(function (result) {
       "\n";
   }
 
-  console.log(final_message);
+  alert(`Full list of orders \n${final_message}`);
 });
