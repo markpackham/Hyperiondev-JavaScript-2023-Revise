@@ -1,8 +1,11 @@
+//
 // Variables
+//
 
-// Placeholder Ingredient list array till fetch request for all ingredients can be made to work
+// Valid main ingredients lists in an array
 // currently 573 ingredients entries for https://www.themealdb.com/api/json/v1/1/list.php?i=list
-// takes way too long to fetch before prompting user to enter an ingredient choice
+// takes way too long to fetch before prompting user to enter an ingredient choice so had to use
+// hard coded solution
 const fullIngredientList = [
   "chicken",
   "salmon",
@@ -73,7 +76,9 @@ let lastOrderNumber = 0;
 let meal_description = "";
 let final_message = "";
 
+//
 // Order Class
+//
 class Order {
   constructor(
     meal_description,
@@ -95,7 +100,9 @@ class Order {
   }
 }
 
+//
 // Generate test data
+//
 const avocado1 = new Order("Chocolate Avocado Mousse", 1, "completed");
 const avocado2 = new Order("Crock Pot Chicken Baked Tacos", 2, "completed");
 const salmon1 = new Order("Salmon Avocado Salad", 3, "completed");
@@ -123,7 +130,7 @@ const callForIngredientAgain = () => {
   mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 };
 
-// Call if user enter wrong number for order
+// Call if user enters wrong number for order
 const callForOrderNumberAgainIncomplete = () => {
   incompleteOrders = prompt(
     `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete"`
@@ -145,7 +152,7 @@ while (true) {
   }
 }
 
-// Use "for of" loop to iterate through our array and add incomplete orders
+// Use "for of" loop to iterate through the array and add incomplete orders
 // Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
 const iterateIncompleteOrders = (ordersStatusArr) => {
   for (let order of ordersStatusArr) {
@@ -170,6 +177,9 @@ const iterateCompleteOrders = (ordersStatusArr) => {
 // Url we are searching for with main ingredient added to query
 let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
 
+//
+// Fetch from API
+//
 // Get all meals based off main ingredient
 const fetchMainIngredientMeals = async () => {
   try {
@@ -202,23 +212,28 @@ meal.then(function (result) {
   // Create new Order
   let order = new Order(mealNames[randomMeal], orderNumber, "incomplete");
 
+  // Take Session Storage data for orders and put in an array
   ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
 
   iterateIncompleteOrders(ordersStatusArr);
 
+  //
+  // Ask to change orders to completed
+  //
   incompleteOrders = prompt(
-    `Incomplete orders are ${incompleteOrdersArray} \n Please enter an order number you wish to mark as "Complete" or "0" to skip`
+    `Incomplete orders are ${incompleteOrdersArray} \n Please enter an order number you wish to mark as "Completed" or "0" to skip`
   );
 
   while (true) {
     if (
+      // It is impossible to have a negative order number or one greater than the last order number
       Number(incompleteOrders) > -1 &&
       Number(incompleteOrders) <= lastOrderNumber
     ) {
       break;
     } else {
       alert("Sorry that order number was wrong please try again.");
-      // Called if user doesn't enter a valid order id
+      // Called if user doesn't enter a valid order number
       callForOrderNumberAgainIncomplete();
     }
   }
@@ -235,6 +250,9 @@ meal.then(function (result) {
   ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
   iterateCompleteOrders(ordersStatusArr);
 
+  //
+  // Ask to change orders to incomplete
+  //
   completeOrders = prompt(
     `Complete orders are ${completeOrdersArray} \n Please enter an order number you wish to mark as "Incomplete" or "0" to skip"`
   );
@@ -257,6 +275,9 @@ meal.then(function (result) {
     }
   }
 
+  //
+  // Final Output
+  //
   sessionStorage.setItem("orders", JSON.stringify(ordersArr));
   ordersArr = JSON.parse(sessionStorage.getItem("orders"));
 
