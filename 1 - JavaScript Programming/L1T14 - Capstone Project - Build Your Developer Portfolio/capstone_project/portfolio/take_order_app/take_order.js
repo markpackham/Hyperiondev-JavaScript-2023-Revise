@@ -1,4 +1,6 @@
-// placeholder Ingredient list array till fetch request for all ingredients can be made to work
+// Placeholder Ingredient list array till fetch request for all ingredients can be made to work
+// currently 573 ingredients entries for https://www.themealdb.com/api/json/v1/1/list.php?i=list
+// takes way too long to fetch before prompting user to enter an ingredient choice
 const fullIngredientList = [
   "chicken",
   "salmon",
