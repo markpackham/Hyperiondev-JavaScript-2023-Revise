@@ -1,3 +1,5 @@
+// Variables
+
 // Placeholder Ingredient list array till fetch request for all ingredients can be made to work
 // currently 573 ingredients entries for https://www.themealdb.com/api/json/v1/1/list.php?i=list
 // takes way too long to fetch before prompting user to enter an ingredient choice
@@ -60,10 +62,10 @@ const fullIngredientList = [
   "chestnut_mushroom",
   "chicken_breast",
 ];
-
-// Variables
 const completeOrdersArray = [];
 const incompleteOrdersArray = [];
+const mainIngredientFilter =
+  "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 let ordersArr = [];
 let ordersStatusArr = [];
 let orderNumber = 0;
@@ -83,8 +85,9 @@ class Order {
     this.completion_status = completion_status;
     ordersArr.push(this);
 
+    // Store orders in Session Storage in JSON array
     sessionStorage.setItem("orders", JSON.stringify(ordersArr));
-    // Store last order number
+    // Store last order number in Session Storage
     sessionStorage.setItem(
       "last_order_number",
       (lastOrderNumber = ordersArr.length)
@@ -99,9 +102,6 @@ const salmon1 = new Order("Salmon Avocado Salad", 3, "completed");
 const salmon2 = new Order("Honey Teriyaki Salmon", 4, "completed");
 const salmon3 = new Order("Salmon Prawn Risotto", 5, "completed");
 const salmon4 = new Order("Salmon Prawn Risotto", 6, "incomplete");
-
-const mainIngredientFilter =
-  "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
 let mainIngredientPrompt = prompt(
   "What is the main ingredient you would like to use eg(chicken, beef, salmon, pork, avocado)?"
@@ -137,18 +137,15 @@ const callForOrderNumberAgainComplete = () => {
 };
 
 while (true) {
-  // Recursive function if user enters an ingredient that doesn't exist eg a null entry
   if (!fullIngredientList.includes(mainIngredient)) {
+    // Recursive function if user enters an ingredient that doesn't exist eg a null entry
     callForIngredientAgain();
   } else {
     break;
   }
 }
 
-// Url we are searching for
-let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
-
-// Use for of loop to iterate through our array and add incomplete orders
+// Use "for of" loop to iterate through our array and add incomplete orders
 // Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
 const iterateIncompleteOrders = (ordersStatusArr) => {
   for (let order of ordersStatusArr) {
@@ -170,7 +167,10 @@ const iterateCompleteOrders = (ordersStatusArr) => {
   }
 };
 
-// Get all meals based off ingredient
+// Url we are searching for with main ingredient added to query
+let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
+
+// Get all meals based off main ingredient
 const fetchMainIngredientMeals = async () => {
   try {
     const response = await fetch(mainIngredientAnswer);
@@ -186,7 +186,7 @@ const meal = fetchMainIngredientMeals();
 
 // Promise gets resolved
 meal.then(function (result) {
-  // Obtain the array of the object
+  // Get meals array from Object
   const mealsList = result.meals;
 
   const mealNames = mealsList.map((meal) => meal.strMeal);
@@ -196,6 +196,7 @@ meal.then(function (result) {
   randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
   alert(`Your meal will be ${mealNames[randomMeal]}`);
 
+  // Since orders are never deleted we can use the length of the array rather than something like a uuid
   orderNumber = ordersArr.length + 1;
 
   // Create new Order
@@ -217,12 +218,14 @@ meal.then(function (result) {
       break;
     } else {
       alert("Sorry that order number was wrong please try again.");
+      // Called if user doesn't enter a valid order id
       callForOrderNumberAgainIncomplete();
     }
   }
 
   ordersArr = JSON.parse(sessionStorage.getItem("orders"));
 
+  // Change status of the specific order the user chose
   for (order of ordersArr) {
     if (Number(incompleteOrders) === order.order_number) {
       order.completion_status = "completed";
@@ -230,7 +233,6 @@ meal.then(function (result) {
   }
 
   ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
-
   iterateCompleteOrders(ordersStatusArr);
 
   completeOrders = prompt(
