@@ -60,7 +60,7 @@ const fullIngredientList = [
 ];
 
 // Variables
-const ordersArr = [];
+let ordersArr = [];
 let ordersStatusArr = [];
 let incompleteOrdersArray = [];
 let orderNumber = 0;
@@ -172,7 +172,7 @@ meal.then(function (result) {
 
   orderNumber = ordersArr.length + 1;
 
-  // Create Order
+  // Create new Order
   let order = new Order(mealNames[randomMeal], orderNumber, false);
 
   ordersStatusArr = JSON.parse(sessionStorage.getItem("orders"));
@@ -194,4 +194,13 @@ meal.then(function (result) {
       callForOrderNumberAgain();
     }
   }
+
+  ordersArr = JSON.parse(sessionStorage.getItem("orders"));
+
+  for (order of ordersArr) {
+    if (Number(incompleteOrders) === order.order_number) {
+      order.completion_status = true;
+    }
+  }
+  sessionStorage.setItem("orders", JSON.stringify(ordersArr));
 });
