@@ -98,6 +98,7 @@ const avocado2 = new Order("Crock Pot Chicken Baked Tacos", 2, "completed");
 const salmon1 = new Order("Salmon Avocado Salad", 3, "completed");
 const salmon2 = new Order("Honey Teriyaki Salmon", 4, "completed");
 const salmon3 = new Order("Salmon Prawn Risotto", 5, "completed");
+const salmon4 = new Order("Salmon Prawn Risotto", 6, "incomplete");
 
 const mainIngredientFilter =
   "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
@@ -193,7 +194,7 @@ meal.then(function (result) {
   // Math.random() learned from
   // MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   randomMeal = Math.floor(Math.random() * (mealNames.length - 1));
-  // console.log(`Your meal will be ${mealNames[randomMeal]}`);
+  alert(`Your meal will be ${mealNames[randomMeal]}`);
 
   orderNumber = ordersArr.length + 1;
 
@@ -205,7 +206,7 @@ meal.then(function (result) {
   iterateIncompleteOrders(ordersStatusArr);
 
   incompleteOrders = prompt(
-    `Incomplete orders are ${incompleteOrdersArray} \n please enter an order you wish to mark as "Complete" or 0 to skip`
+    `Incomplete orders are ${incompleteOrdersArray} \n Please enter an order number you wish to mark as "Complete" or "0" to skip`
   );
 
   while (true) {
@@ -233,7 +234,7 @@ meal.then(function (result) {
   iterateCompleteOrders(ordersStatusArr);
 
   completeOrders = prompt(
-    `Complete orders are ${completeOrdersArray} \n please enter an order you wish to mark as "Incomplete or 0 to skip"`
+    `Complete orders are ${completeOrdersArray} \n Please enter an order number you wish to mark as "Incomplete" or "0" to skip"`
   );
 
   while (true) {
