@@ -59,30 +59,13 @@ const fullIngredientList = [
   "chicken_breast",
 ];
 
+// Variables
 const ordersArr = [];
+let incompleteOrdersArray = [];
 let orderNumber = 0;
 let lastOrderNumber = 0;
 let meal_description = "";
-
-// Fetch full list of valid ingredients, takes wy too long to fetch so for now all ingredients hard coded into array
-// const fetchIngredients = () => {
-//   return new Promise((resolve, reject) => {
-//     fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         const fullIngredientList = data.meals.map((meal) =>
-//           meal.strIngredient.toLowerCase().split(" ").join("_")
-//         );
-//         resolve(fullIngredientList);
-//       })
-//       .catch((error) => reject(error));
-//   });
-// };
-
-// // Call my Promise to make sure I get all my ingredients
-// fetchIngredients()
-//   .then((fullIngredientList) => console.log(fullIngredientList))
-//   .catch((error) => console.error(error));
+let ordersArray = [];
 
 // Order Class
 class Order {
@@ -140,7 +123,20 @@ while (true) {
   }
 }
 
+// Url we are searching for
 let mainIngredientAnswer = mainIngredientFilter + mainIngredient;
+
+// Use for of loop to iterate through our array and add incomplete orders
+// Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+const iterateIncompleteOrders = (ordersArray) => {
+  for (let order of ordersArray) {
+    if (order.completion_status === false) {
+      incompleteOrdersArray.push(
+        "\n" + order.order_number + " " + order.meal_description
+      );
+    }
+  }
+};
 
 const fetchMainIngredientMeals = async () => {
   try {
@@ -171,19 +167,10 @@ meal.then(function (result) {
 
   // Create Order
   let order = new Order(mealNames[randomMeal], orderNumber, false);
+
+  ordersArray = JSON.parse(sessionStorage.getItem("orders"));
+
+  iterateIncompleteOrders(ordersArray);
+
+  incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
 });
-
-let ordersArray = JSON.parse(sessionStorage.getItem("orders"));
-let incompleteOrdersArray = [];
-
-// Use for of loop to iterate through our array and add incomplete orders
-// Learned from MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
-for (let order of ordersArray) {
-  if (order.completion_status === false) {
-    incompleteOrdersArray.push(
-      order.order_number + " " + order.meal_description
-    );
-  }
-}
-
-incompleteOrders = prompt(`Incomplete orders are ${incompleteOrdersArray}`);
