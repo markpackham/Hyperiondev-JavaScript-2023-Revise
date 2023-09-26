@@ -120,6 +120,7 @@ let mainIngredientPrompt = prompt(
   Available at: https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript (Accessed: 18 September 2023). 
   */
 // Handle entries like "Bicarbonate Of Soda" so it becomes bicarbonate_of_soda
+// alternate solution would be using "replaceAll" mainIngredientPrompt.replaceAll(" ", "_").toLowerCase()
 let mainIngredient = mainIngredientPrompt.toLowerCase().split(" ").join("_");
 
 // Call user to re-enter their order due to an error
@@ -145,7 +146,7 @@ const callForOrderNumberAgainComplete = () => {
 
 while (true) {
   if (!fullIngredientList.includes(mainIngredient)) {
-    // Recursive function if user enters an ingredient that doesn't exist eg a null entry
+    // If user enters an ingredient that doesn't exist eg a null entry
     callForIngredientAgain();
   } else {
     break;
